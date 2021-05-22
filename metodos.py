@@ -140,3 +140,23 @@ def pruebas_leibniz_64():
     """En la computadora, el número π no es una constante porque se contempla como una variable con error aproximado de 1*e^(-15).
     Al mismo tiempo, dependerá de la cantidad de bits disponibles para su representación."""
 
+def main():
+    print("\nTP 1 - ANÁLISIS NUMÉRICO - FIUBA\n1er Cuatrimestre - 2021")
+    print("Aldana Rastrelli - Aldana Barbesini - Juan Ignacio Baserga")
+    
+    print("\n***\nÍtem 2)a): Programar un algoritmo para aproximar π utilizando la función seno(x) con el método de Newton-Raphson, en función de x, que realice iteraciones hasta alcanzar el límite de la herramienta utilizada.")
+    # pruebas_newton_raphson()
+
+    print("\n***\nÍtem 2)b): Programar un algoritmo para aproximar π utilizando la serie de Leibniz, en función de n.")
+    # pruebas_leibniz()
+
+    print("\n***\nÍtem 2)c): Ejecutar los programas solicitados en a y b utilizando representación de punto flotante de 32 bits y comparar las respuestas obtenidas con n = 10, n = 100, n = 1000, n = 10000 y n = 100000.")
+    # pruebas_32bits_newton_raphson()
+    # pruebas_32bits_leibniz()
+
+    print("\n***\nÍtem 2)d): Ejecutar los programas solicitados en a y b utilizando representación de punto flotante de 64 bits y comparar las respuestas obtenidas con n = 10, n = 100, n = 1000, n = 10000 y n = 100000.")
+    # pruebas_64bits_newton_raphson()
+    # pruebas_64bits_leibniz()
+
+
+main()
