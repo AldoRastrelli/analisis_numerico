@@ -2,6 +2,8 @@ import numpy as np
 from sympy import *
 import math
 
+# TP 1
+
 # item 2 a
 # Programar un algoritmo para aproximar π utilizando la función seno(x) con el m´etodo de
 # Newton-Raphson, en función de x, que realice iteraciones hasta alcanzar el l´ımite de la herramienta utilizada.
