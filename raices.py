@@ -1,22 +1,59 @@
 from scipy import optimize
 import math
+import matplotlib.pyplot as plt
+import numpy as np
 
 def main():
 
-    print("\n** OBTENCIÓN DE RAÍCES CON SCIPY**\n")
+    inicio_interv = 0
+    final_interv = 2
+    funciones = [f1,f2,f3]
+    graficar_funciones(inicio_interv, final_interv, funciones)
+    imprimir_raices(inicio_interv, final_interv, funciones)
 
-    print("Intervalo: [0,2]")
-
-    print("\nRaíz/raíces f1(x):")
-    print(optimize.brentq(f1,0,2))
-
-    print("\nRaíces f2(x):")
-    print(optimize.brentq(f2,0,2))
-
-    print("\nRaíces f3(x):")
-    print(optimize.brentq(f3,0,2))
+    print()
 
     return
+
+def graficar_funciones(inicio_interv, final_interv, funciones):
+    
+    x = np.linspace(inicio_interv,final_interv,100)
+    
+    for funcion in funciones:
+        y = funcion(x)
+
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        ax.spines['left'].set_position('center')
+        ax.spines['bottom'].set_position('zero')
+        ax.spines['right'].set_color('none')
+        ax.spines['top'].set_color('none')
+        ax.xaxis.set_ticks_position('bottom')
+        ax.yaxis.set_ticks_position('left')
+
+        plt.plot(x,y, 'r', label= "f" + str(funciones.index(funcion)+1) + "(x):" )
+
+        plt.legend(loc='upper left')
+
+        # show the plot
+        plt.show()
+
+    return
+
+def imprimir_raices(inicio_interv, final_interv, funciones):
+
+    print("\n** OBTENCIÓN DE RAÍCES CON SCIPY**\n")
+
+    print("Intervalo: [" + str(inicio_interv) + ", " + str(final_interv) + "]")    
+
+    for funcion in funciones:
+        print("\nRaíz/raíces f" + str(funciones.index(funcion)+1) + "(x):")
+        imprimir_raiz_en_intervalo(funcion,inicio_interv,final_interv)
+
+def imprimir_raiz_en_intervalo(funcion, inicio_interv, final_interv):
+
+    raiz = optimize.brentq(funcion,inicio_interv,final_interv)
+    print("{:.4f}".format(raiz))        ## limita la cantidad de dígitos a imprimirse a 4
 
 def f1(x):
     return (x**2 - 2)
