@@ -1,12 +1,11 @@
 import numpy as np
-from sympy import *
 import math
 
 # TP 1
 
 # item 2 a
-# Programar un algoritmo para aproximar π utilizando la función seno(x) con el m´etodo de
-# Newton-Raphson, en función de x, que realice iteraciones hasta alcanzar el l´ımite de la herramienta utilizada.
+# Programar un algoritmo para aproximar π utilizando la función seno(x) con el método de
+# Newton-Raphson, en función de x, que realice iteraciones hasta alcanzar el límite de la herramienta utilizada.
 
 def newton_raphson_wrapper_getPi(tolerancia, maxIteraciones, semilla):
     """ La semilla debe de estar cerca del intervalo."""
@@ -19,7 +18,6 @@ def newton_raphson_wrapper_getPi(tolerancia, maxIteraciones, semilla):
         return None, np.array([])
 
     return newton_raphson(seno, seno_derivado, tolerancia, maxIteraciones, semilla, 0, historia)
-
 
 def newton_raphson(funcion, funcion_derivada, tolerancia, maxIteraciones, x_n, iteracion, historia):
     """Se consideran a los valores recibimos como válidos: no requieren validación extra.
@@ -40,10 +38,6 @@ def newton_raphson(funcion, funcion_derivada, tolerancia, maxIteraciones, x_n, i
     error = abs(x_n_mas_1 - x_n)
 
     historia[iteracion] = (iteracion, x_n, error)
-
-    if x_n_mas_1 == x_n:
-        historia = historia[:iteracion + 1]
-        return x_n, historia  # Verificar si se devuelve directo x_n
 
     if error < tolerancia:
         historia[iteracion + 1] = (iteracion + 1, x_n_mas_1,error)
@@ -77,25 +71,59 @@ def serie_leibniz_pi(iteraciones):
 # n = 100000.
 
 def pruebas_newton_raphson_32():
-    # newton_raphson_wrapper_getPi(tolerancia, maxIteraciones, semilla)
-    # n = maxIteraciones
-    # tolerancia = ?
-    # semilla = ?
+    tolerancia = 1e-5
+    semilla = np.float32(2.0)
+    print("\n**PRUEBAS NEWTON-RAPHSON PARA 32 BITS**")
+    print("[Valor Exacto π:  3.141592653589793...]")
+
+    print("\n   Tolerancia: 1e-5, semilla: 2.0")
 
     # ejecutar newton_raphson para n = 10
+    print("         n = 10")
+    print("         Aproximación obtenida: " + str(np.float32(newton_raphson_wrapper_getPi(tolerancia, 10, semilla)[0])))
+
     # ejecutar newton_raphson para n = 100
+    print("         n = 100")
+    print("         Aproximación obtenida: " + str(np.float32(newton_raphson_wrapper_getPi(tolerancia, 100, semilla)[0])))
+
     # ejecutar newton_raphson para n = 1000
+    print("         n = 1000")
+    print("         Aproximación obtenida: " + str(np.float32(newton_raphson_wrapper_getPi(tolerancia, 1000, semilla)[0])))
+
     # ejecutar newton_raphson para n = 10000
+    print("         n = 10000")
+    print("         Aproximación obtenida: " + str(np.float32(newton_raphson_wrapper_getPi(tolerancia, 10000, semilla)[0])))
+
     # ejecutar newton_raphson para n = 100000
+    print("         n = 100000")
+    print("         Aproximación obtenida: " + str(np.float32(newton_raphson_wrapper_getPi(tolerancia, 100000, semilla)[0])))
+
     return
 
 def pruebas_leibniz_32():
-    #serie_leibniz_pi(iteraciones)
+    print("\n**PRUEBAS SERIE DE LEIBNIZ PARA 32 BITS**")
+    print("[Valor Exacto π:  3.141592653589793...]")
+    
     #ejecutar leibniz para n = 10
+    print("         n = 10")
+    print("         Aproximación obtenida: " + str(np.float32((serie_leibniz_pi(10)))))
+
     #ejecutar leibniz para n = 100
+    print("         n = 100")
+    print("         Aproximación obtenida: " + str(np.float32(serie_leibniz_pi(100))))
+    
     #ejecutar leibniz para n = 1000
+    print("         n = 1000")
+    print("         Aproximación obtenida: " + str(np.float32(serie_leibniz_pi(1000))))
+
     #ejecutar leibniz para n = 10000
+    print("         n = 10000")
+    print("         Aproximación obtenida: " + str(np.float32(serie_leibniz_pi(10000))))
+
     #ejecutar leibniz para n = 100000
+    print("         n = 100000")
+    print("         Aproximación obtenida: " + str(np.float32(serie_leibniz_pi(100000))))
+
     return
 
 
@@ -105,60 +133,75 @@ def pruebas_leibniz_32():
 # n = 100000.
 
 def pruebas_newton_raphson_64():
+    tolerancia = 1e-5
+    semilla = np.float64(2.0)
+
+    print("\n**PRUEBAS NEWTON-RAPHSON PARA 64 BITS**")
+    print("[Valor Exacto π:  3.141592653589793...]")
+
+    print("\n   Tolerancia: 1e-5, semilla: 2.0")
+
     # ejecutar newton_raphson para n = 10
+    print("         n = 10")
+    print("         Aproximación obtenida: " + str(np.float64(newton_raphson_wrapper_getPi(tolerancia, 10, semilla)[0])))
+
     # ejecutar newton_raphson para n = 100
+    print("         n = 100")
+    print("         Aproximación obtenida: " + str(np.float64(newton_raphson_wrapper_getPi(tolerancia, 100, semilla)[0])))
+
     # ejecutar newton_raphson para n = 1000
+    print("         n = 1000")
+    print("         Aproximación obtenida: " + str(np.float64(newton_raphson_wrapper_getPi(tolerancia, 1000, semilla)[0])))
+
     # ejecutar newton_raphson para n = 10000
+    print("         n = 10000")
+    print("         Aproximación obtenida: " + str(np.float64(newton_raphson_wrapper_getPi(tolerancia, 10000, semilla)[0])))
+
     # ejecutar newton_raphson para n = 100000
+    print("         n = 100000")
+    print("         Aproximación obtenida: " + str(np.float64(newton_raphson_wrapper_getPi(tolerancia, 100000, semilla)[0])))
+
     return
 
 
 def pruebas_leibniz_64():
+    print("\n**PRUEBAS SERIE DE LEIBNIZ PARA 64 BITS**")
+    print("[Valor Exacto π:  3.141592653589793...]")
+    
     #ejecutar leibniz para n = 10
+    print("         n = 10")
+    print("         Aproximación obtenida: " + str(np.float64(serie_leibniz_pi(10))))
+
     #ejecutar leibniz para n = 100
+    print("         n = 100")
+    print("         Aproximación obtenida: " + str(np.float64(serie_leibniz_pi(100))))
+    
     #ejecutar leibniz para n = 1000
+    print("         n = 1000")
+    print("         Aproximación obtenida: " + str(np.float64(serie_leibniz_pi(1000))))
+
     #ejecutar leibniz para n = 10000
+    print("         n = 10000")
+    print("         Aproximación obtenida: " + str(np.float64(serie_leibniz_pi(10000))))
+
     #ejecutar leibniz para n = 100000
+    print("         n = 100000")
+    print("         Aproximación obtenida: " + str(np.float64(serie_leibniz_pi(100000))))
+
     return
 
-
-# item 2 e
-# Ejecutar los programas solicitados en a y b con una calculadora (aclarar marca y modelo) y
-# comparar las respuestas obtenidas con n = 10, n = 100, n = 1000, n = 10000 y n = 100000
-# (en caso de no alcanzar la memoria de la calculadora utilizar el máximo n posible).
-
-    """Hacer las cuentas""" ## Aldi
-
-# item 2 f
-# Representar las dos respuestas finales obtenidas (para n = 100,000 y el método de Newton
-# Raphson) en c, d y e de manera de expresarlo como π = π(vect) + ∆π
-
-    """ calcular ∆π """
-    # | Xn -  X(n+1) |
-
-# item 2 g
-# Podemos afirmar que para la computadora el número π es una constante?
-
-    """En la computadora, el número π no es una constante porque se contempla como una variable con error aproximado de 1*e^(-15).
-    Al mismo tiempo, dependerá de la cantidad de bits disponibles para su representación."""
 
 def main():
     print("\nTP 1 - ANÁLISIS NUMÉRICO - FIUBA\n1er Cuatrimestre - 2021")
     print("Aldana Rastrelli - Aldana Barbesini - Juan Ignacio Baserga")
-    
-    print("\n***\nÍtem 2)a): Programar un algoritmo para aproximar π utilizando la función seno(x) con el método de Newton-Raphson, en función de x, que realice iteraciones hasta alcanzar el límite de la herramienta utilizada.")
-    # pruebas_newton_raphson()
 
-    print("\n***\nÍtem 2)b): Programar un algoritmo para aproximar π utilizando la serie de Leibniz, en función de n.")
-    # pruebas_leibniz()
+    print("\n***\nÍtem 2)c)")
+    pruebas_newton_raphson_32()
+    pruebas_leibniz_32()
 
-    print("\n***\nÍtem 2)c): Ejecutar los programas solicitados en a y b utilizando representación de punto flotante de 32 bits y comparar las respuestas obtenidas con n = 10, n = 100, n = 1000, n = 10000 y n = 100000.")
-    # pruebas_32bits_newton_raphson()
-    # pruebas_32bits_leibniz()
-
-    print("\n***\nÍtem 2)d): Ejecutar los programas solicitados en a y b utilizando representación de punto flotante de 64 bits y comparar las respuestas obtenidas con n = 10, n = 100, n = 1000, n = 10000 y n = 100000.")
-    # pruebas_64bits_newton_raphson()
-    # pruebas_64bits_leibniz()
+    print("\n***\nÍtem 2)d)")
+    pruebas_newton_raphson_64()
+    pruebas_leibniz_64()
 
 
 main()
