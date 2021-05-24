@@ -11,10 +11,6 @@ def main():
     graficar_funciones(inicio_interv, final_interv, funciones)
     imprimir_raices(inicio_interv, final_interv, funciones)
 
-    print()
-
-    return
-
 def graficar_funciones(inicio_interv, final_interv, funciones):
     
     x = np.linspace(inicio_interv,final_interv,100)
@@ -43,7 +39,6 @@ def graficar_funciones(inicio_interv, final_interv, funciones):
 def imprimir_raices(inicio_interv, final_interv, funciones):
 
     print("\n** OBTENCIÓN DE RAÍCES CON SCIPY**\n")
-
     print("Intervalo: [" + str(inicio_interv) + ", " + str(final_interv) + "]")    
 
     for funcion in funciones:
