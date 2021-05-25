@@ -11,10 +11,6 @@ def main():
     graficar_funciones(inicio_interv, final_interv, funciones)
     imprimir_raices(inicio_interv, final_interv, funciones)
 
-    print()
-
-    return
-
 def graficar_funciones(inicio_interv, final_interv, funciones):
     
     x = np.linspace(inicio_interv,final_interv,100)
@@ -24,15 +20,16 @@ def graficar_funciones(inicio_interv, final_interv, funciones):
 
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
-        ax.spines['left'].set_position('center')
+
         ax.spines['bottom'].set_position('zero')
         ax.spines['right'].set_color('none')
         ax.spines['top'].set_color('none')
         ax.xaxis.set_ticks_position('bottom')
         ax.yaxis.set_ticks_position('left')
 
-        plt.plot(x,y, 'r', label= "f" + str(funciones.index(funcion)+1) + "(x):" )
+        ax.set(xlabel="x", ylabel="y")
 
+        plt.plot(x,y, label= "f" + str(funciones.index(funcion)+1) + "(x):" )
         plt.legend(loc='upper left')
 
         # show the plot
@@ -43,7 +40,6 @@ def graficar_funciones(inicio_interv, final_interv, funciones):
 def imprimir_raices(inicio_interv, final_interv, funciones):
 
     print("\n** OBTENCIÓN DE RAÍCES CON SCIPY**\n")
-
     print("Intervalo: [" + str(inicio_interv) + ", " + str(final_interv) + "]")    
 
     for funcion in funciones:
