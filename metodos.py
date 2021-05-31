@@ -1,10 +1,14 @@
+# coding=utf-8
+
 import numpy as np
 import math
+
+COTA_CERO = 1e-20
 
 # TP 1
 
 # item 2 a
-# Programar un algoritmo para aproximar π utilizando la función seno(x) con el método de
+# Programar un algoritmo para aproximar pi utilizando la función seno(x) con el método de
 # Newton-Raphson, en función de x, que realice iteraciones hasta alcanzar el límite de la herramienta utilizada.
 
 def newton_raphson_wrapper_getPi(tolerancia, maxIteraciones, semilla):
@@ -30,7 +34,8 @@ def newton_raphson(funcion, funcion_derivada, tolerancia, maxIteraciones, x_n, i
     valorFuncion = funcion(x_n) # Evalua sen(x_n)
     valorDerivada = funcion_derivada(x_n) # Evalua cos(x_n)
 
-    if valorDerivada == 0:
+    # # # Corrección: no comparar float con int == 0 # # #  
+    if abs(valorDerivada) < COTA_CERO:
         return None, np.array([])
 
     x_n_mas_1 = x_n - (valorFuncion / valorDerivada)
@@ -39,7 +44,12 @@ def newton_raphson(funcion, funcion_derivada, tolerancia, maxIteraciones, x_n, i
 
     historia[iteracion] = (iteracion, x_n, error)
 
-    if error < tolerancia:
+    # # # Correccion: Error Local Relativo # # #
+    if (abs(x_n_mas_1 - x_n)/abs(x_n_mas_1) < COTA_CERO):
+        historia = historia[:iteracion + 1]
+        return x_n, historia
+
+    if error < tolerancia or abs(x_n_mas_1 - x_n) < tolerancia:
         historia[iteracion + 1] = (iteracion + 1, x_n_mas_1,error)
         historia = historia[:iteracion + 2]
         return x_n_mas_1, historia
@@ -47,7 +57,7 @@ def newton_raphson(funcion, funcion_derivada, tolerancia, maxIteraciones, x_n, i
     return newton_raphson(funcion, funcion_derivada, tolerancia, maxIteraciones, x_n_mas_1, iteracion + 1, historia)
 
 #item 2 b
-# Programar un algoritmo para aproximar π utilizando la serie de Leibniz, en función de n.
+# Programar un algoritmo para aproximar pi utilizando la serie de Leibniz, en función de n.
 
 def serie_leibniz_pi(iteraciones):
     """devuelve None si la cantidad de iteraciones enviadas por parámetro no son al menos 1.
