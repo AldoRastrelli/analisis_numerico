@@ -34,7 +34,7 @@ def newton_raphson(funcion, funcion_derivada, tolerancia, maxIteraciones, x_n, i
     valorFuncion = funcion(x_n) # Evalua sen(x_n)
     valorDerivada = funcion_derivada(x_n) # Evalua cos(x_n)
 
-    # # # Corrección: no comparar float con int == 0 # # #  
+    # # # Corrección: no comparar float con int usando == 0 # # #  
     if abs(valorDerivada) < COTA_CERO:
         return None, np.array([])
 
