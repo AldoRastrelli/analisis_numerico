@@ -87,7 +87,7 @@ def newton_raphson_modificado(funcion, funcion_derivada, funcion_doble_derivada,
     historia.append((iteracion, x_n_mas_1, error))
 
     # # # Correccion: Error Local Relativo # # #
-    if abs(x_n_mas_1 - x_n / x_n) < COTA_CERO:
+    if abs(x_n_mas_1 - x_n / x_n_mas_1) < COTA_CERO:
         historia = historia[:iteracion + 1]
         return x_n, historia
 
