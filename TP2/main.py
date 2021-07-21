@@ -13,7 +13,7 @@ def main():
     matrixB = buildMatrixB(ti_array.tolist(), k_max, xi)
     # print(matrixA, matrixB)
     coefs = gauss(matrixA, matrixB)
-    #print("AX = B. Gauss con pivoteo parcial => X = ", coefs)
+    print("AX = B. Gauss con pivoteo parcial => X = " + str(coefs))
     
     graficar()
 
@@ -32,11 +32,11 @@ def graficar():
         for i in range(len(xi_array)):
             xi_array[i] = xi[i] - xi_array[i]
 
-        print(xi_array)
+        # print(xi_array)
 
         x_array.append(xi_array)
     
-    print(x_array)
+    # print(x_array)
     graph(x_array, ti.tolist(), ks_max)
     
 
@@ -58,7 +58,7 @@ def get_values(a0, a, b, ti, k_max):
         #     suma += a0/2 + (a[k-1] * sin( 2. * pi * (k) * t / T ) + b[k-1] * cos( 2. * pi * (k) * t / T))
         # xi.append(suma)
 
-    print(xi)
+    # print(xi)
     return xi
 
 main()

@@ -20,11 +20,11 @@ def graph(xis_array, tis_array, ks_max):
     for i in range(len(xis_array)):
         
         xi = xis_array[i]
-        print("PARES para k: ", ks_max[i])
-        print("xi, len: ", len(xi))
-        print(xi)
-        print("ti, len: ", len(tis_array))
-        print(tis_array[0:len(xi)])
+        # print("PARES para k: ", ks_max[i])
+        # print("xi, len: ", len(xi))
+        # print(xi)
+        # print("ti, len: ", len(tis_array))
+        # print(tis_array[0:len(xi)])
 
         plt.plot(tis_array[0:len(xi)], xi, label= "k" + str(ks_max[i]), color = colors[i])
         plt.legend(loc='upper right')

@@ -35,3 +35,44 @@ def gauss(A,b):
     x[i] = float(M[i][n] - z)/M[i][i]
 
   return x
+
+def gauss_seidel(A,b):
+  # Gauss Seidel
+  A0 = 0
+  B0 = 0
+  e = float(0.001)
+
+  condition = True
+  while condition:
+      #fA, fB las funciones donde se calcula cada vez
+      A1 = fA(B0)
+      B1 = fB(A0)
+      e1 = ((abs(A0-A1))/A0)
+      e2 = ((abs(B0-B1))/B0)
+      x0 = x1
+      y0 = y1
+      
+      condition = e1>e and e2>e
+
+  print('\nSolution: x=%0.3f, y=%0.3f'% (x1,y1))
+  return x1, y1
+
+
+
+# Defining our function as seidel which takes 3 arguments
+# as A matrix, Solution and B matrix
+def seidel(a, x ,b):
+    n = len(a)                   
+    # calculo x y z
+    for j in range(0, n):        
+        #var temporal para guardar b[j]
+        d = b[j]                  
+          
+        # calcula xi, yi, zi
+        for i in range(0, n):     
+            if(j != i):
+                d-=a[j][i] * x[i]
+        # update del valor         
+        x[j] = d / a[j][j]
+    # devuelve valor updateado          
+    return x   

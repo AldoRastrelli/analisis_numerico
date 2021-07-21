@@ -212,7 +212,7 @@ def pruebas_funciones(funciones, cota_error_1, cota_error_2):
                 continue
             plt.plot([i for i in range(len(constante))], constante, color = colores[i], label=labels[i])
             i += 1
-        plt.xticks([i*10 for i in range(xmax//10)])
+        plt.xticks([i*10 for i in range(xmax#10)])
         plt.xlim(1, xmax)
         plt.grid(True)
         plt.legend(loc = 'best')
@@ -234,7 +234,7 @@ def pruebas_funciones(funciones, cota_error_1, cota_error_2):
                 continue
             plt.plot([i for i in range(len(conv))], conv, color = colores[i], label=labels[i])
             i += 1
-        plt.xticks([i*10 for i in range(xmax//10)])
+        plt.xticks([i*10 for i in range(xmax#10)])
         plt.xlim(1, xmax)
         plt.grid(True)
         plt.legend(loc = 'best')
