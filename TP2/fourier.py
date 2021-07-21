@@ -31,12 +31,11 @@ def fourier_series_coeff_numpy(f, T, k_max):
     """
 
     # usamos una frecuencia de muestra más grande que la frecuencia de la señal
-    f_sample =  2 * k_max
+    f_sample =  3 * k_max
     
     ti_array, dt = np.linspace(0, T, f_sample, endpoint=False, retstep=True)
 
     x = np.fft.rfft(f(ti_array)) / ti_array.size
-
     xi  = x * 2
     return xi[0].real, xi[1:-1].real, -xi[1:-1].imag, ti_array, f(ti_array)
 

@@ -18,7 +18,7 @@ def buildMatrixA(ti_array, k_max):
         matrixA.append([])
 
     # primer fila de la matriz
-    matrixA[fila1].append(k_max*2)
+    matrixA[fila1].append(k_max*3)
     matrixA[fila1].append( calc_sum( k_max, ti_array, calc_cos) )
     matrixA[fila1].append( calc_sum( k_max, ti_array, calc_sen) )
 
@@ -52,14 +52,14 @@ def buildMatrixB(ti_array, k_max, xi_array):
 
 def calc_sum( k_max, ti_array, funcF = lambda x: 1, funcG = lambda x: 1):
     res = 0.0
-    for i in range(k_max*2):
+    for i in range(k_max*3):
         res += funcF(ti_array[i]) * funcG(ti_array[i])
     
     return res
 
 def calc_sum_xi( k_max, ti_array, xi, funcF = lambda x: 1):
     res = 0.0
-    for i in range(k_max*2):
+    for i in range(k_max*3):
         res += xi[i] * funcF(ti_array[i])   
     return res
 
@@ -79,16 +79,3 @@ def calc_cos_cuad(ti):
 def calc_sen_cuad(ti):
     #radianes
     return sin((2 * pi / T) * ti) ** 2
-
-def main():
-    k_max = 3
-    a0, a, b, ti_array, xi = fourier_series_coeff_numpy(f, T, k_max)
-    
-    matrixA = buildMatrixA(ti_array.tolist(), k_max)
-    matrixB = buildMatrixB(ti_array.tolist(), k_max, xi)
-    # print(matrixA, matrixB)
-    print(gauss(matrixA, matrixB))
-    
-
-main()
-
