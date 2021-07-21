@@ -13,48 +13,52 @@ def main():
     matrixB = buildMatrixB(ti_array.tolist(), k_max, xi)
     # print(matrixA, matrixB)
     coefs = gauss(matrixA, matrixB)
-    print("AX = B. Gauss con pivoteo parcial => X = ", coefs)
+    #print("AX = B. Gauss con pivoteo parcial => X = ", coefs)
     
-    graficar(coefs)
+    graficar()
 
-def graficar(coefs):
+def graficar():
 
     ks_max = [ 1, 3, 13, 34, 55, 144]
-    #ks_max = [ 3]
-    st_array = []
+    #ks_max = [ 5]
+    x_array = []
 
+    x_array = []
     for k_max in ks_max:
         a0, a, b, ti, xi = fourier_series_coeff_numpy(f, T, k_max)
-        st_array.append(s_t(coefs, ti.tolist(), xi, k_max))
+        xi_array = get_values(a0, a, b, ti.tolist(), k_max) # array de xis para tis
+        
+
+        for i in range(len(xi_array)):
+            xi_array[i] = xi[i] - xi_array[i]
+
+        print(xi_array)
+
+        x_array.append(xi_array)
     
-    print(st_array)
-    graph(st_array, ti.tolist(), ks_max)
+    print(x_array)
+    graph(x_array, ti.tolist(), ks_max)
+    
 
     return 
 
-def s_t(coefs, ti, xi, k_max):
+def get_values(a0, a, b, ti, k_max):
 
-    coef_a0 = coefs[0]
-    coef_a1 = coefs[1]
-    coef_b1 = coefs[2]
-    
-    sum = 0 
-    N = k_max * 3
-    for i in range(N):
+    xi = []
 
-        si = (xi[i] - (coef_a0 + coef_a1 * cos(2 * pi / T * ti[i]) + coef_b1 * sin(2 * pi / T * ti[i]))) **2
-        # print("A1cos(wot): " + str(coef_a1 * cos(2 * pi / T * ti[i])))
-        # print("b1sin(wot): " + str(coef_b1 * sin(2 * pi / T * ti[i])))
-        # print("ti: " + str(ti[i]))
-        # print("xi: " + str(xi[i]))
-        # print("A0: " + str(coef_a0))
-        # print("A1: " + str(coef_a1))
-        # print("B1: " + str(coef_b1))
-        # print("si: " + str(si))
-        # print(" ")
-        sum += si
-    
-    return sum
+    for t in ti:
+        if(a.size == 0 and b.size == 0):
+            xi.append(a0/2)
+            continue
+            
+        xi.append(a0/2.+sum([a[k-1]* sin(2.* pi * k * t / T ) + b[k-1] * cos(2.* pi *
+ k * t / T) for k in range(1, k_max+1)]))
+        # suma = 0
+        # for k in range(1,k_max+1):
+        #     suma += a0/2 + (a[k-1] * sin( 2. * pi * (k) * t / T ) + b[k-1] * cos( 2. * pi * (k) * t / T))
+        # xi.append(suma)
+
+    print(xi)
+    return xi
 
 main()
-
